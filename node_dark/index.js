@@ -48,6 +48,7 @@ app.get("/history", (req, res) => {
 app.get("/enemies", (req, res) => res.redirect("/inimigos"));
 app.get("/levels", (req, res) => res.redirect("/mapas"));
 
+
 // Erros de upload (formato/tamanho da imagem)
 app.use((err, req, res, next) => {
   console.error(err);
@@ -76,7 +77,7 @@ async function iniciarServidor() {
     await conn.end();
 
     await connection.authenticate();
-    await connection.sync(); // cria as tabelas inimigos e mapas
+    await connection.sync({ alter: true }); // cria as tabelas inimigos e mapas
 
     console.log("Banco conectado com sucesso!");
 

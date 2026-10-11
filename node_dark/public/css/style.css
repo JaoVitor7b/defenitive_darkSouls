@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap");
 
+/* ==================================================
+   1. VARIÁVEIS GLOBAIS
+   ================================================== */
+
 :root {
   --dark: #101214;
   --dark2: #1c2022;
@@ -8,103 +12,88 @@
   --text: #252525;
   --muted: #6d6a64;
   --line: #ddd9d0;
+
+  --font-texto: "DM Sans", Arial, sans-serif;
+  --font-titulo: "Playfair Display", serif;
+
+  --transition: 0.25s ease;
 }
 
-
-.campo {
-  display: flex;
-  flex-direction: column;
-}
-
-.campo label {
-  color: #fff;
-  margin-bottom: 6px;
-}
-
-.campo input,
-.campo textarea {
-  padding: 10px;
-  border: none;
-  border-radius: 6px;
-}
-
-.form-cadastro button {
-  background: #c69214;
-  color: #fff;
-  border: none;
-  padding: 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.form-cadastro button:hover {
-  background: #e0a900;
-}
-
-
+/* ==================================================
+   2. RESET E CONFIGURAÇÕES GERAIS
+   ================================================== */
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
 html {
   scroll-behavior: smooth;
 }
+
 body {
   min-height: 100vh;
   padding-top: 72px;
   overflow-x: hidden;
   background: var(--paper);
   color: var(--text);
-  font-family: "DM Sans", Arial, sans-serif;
+  font-family: var(--font-texto);
 }
+
 img {
   display: block;
   max-width: 100%;
 }
+
 a {
   color: inherit;
 }
 
-/* Navegação */
+/* ==================================================
+   3. NAVEGAÇÃO
+   ================================================== */
+
 .navbar {
   position: fixed;
   inset: 0 0 auto;
   z-index: 10;
   height: 72px;
   padding: 0 5%;
-  background: rgba(16, 18, 20, 0.97);
-  border-bottom: 1px solid #fff2;
+  background: rgb(16 18 20 / 97%);
+  border-bottom: 1px solid #ffffff22;
 }
+
 .navbar-conteudo {
-  width: min(100%, 1180px);
-  height: 100%;
-  margin: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+  width: min(100%, 1180px);
+  height: 100%;
+  margin: auto;
 }
+
 .menu-titulo {
   white-space: nowrap;
 }
+
 .menu-titulo a {
   display: flex;
   align-items: center;
   gap: 10px;
   color: #fff;
   text-decoration: none;
-  font:
-    700 20px "Playfair Display",
-    serif;
+  font: 700 20px var(--font-titulo);
 }
+
 .menu-titulo img {
   width: 31px;
   height: 31px;
   object-fit: contain;
 }
+
 .navbar ul {
   display: flex;
   align-items: center;
@@ -112,40 +101,39 @@ a {
   gap: 4px;
   list-style: none;
 }
+
 .navbar a {
   display: inline-block;
   padding: 11px 14px;
   color: #d8d5ce;
   text-decoration: none;
   font-size: 13px;
-  transition: 0.25s;
+  transition: var(--transition);
 }
+
 .navbar li a:hover,
 .navbar li a:focus-visible {
   background: var(--gold);
   color: #161616;
-  outline: 0;
-}
-.rodape {
-  display: flex;
-  min-height: 68px;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background: var(--dark);
-  color: #aaa69d;
-  text-align: center;
-  font-size: 12px;
+  outline: none;
 }
 
-/* Base reutilizável */
+/* ==================================================
+   4. ELEMENTOS REUTILIZÁVEIS
+   ================================================== */
+
+/* Pequenos títulos destacados */
+
 .eyebrow {
   color: var(--gold);
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
   font-size: 11px;
   font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
+
+/* Botão principal */
+
 .botao-principal {
   display: inline-flex;
   align-items: center;
@@ -156,157 +144,200 @@ a {
   color: #171717;
   text-decoration: none;
   font-weight: 700;
-  transition: 0.25s;
+  transition: var(--transition);
 }
+
 .botao-principal:hover {
   background: #efd083;
   transform: translateY(-2px);
 }
+
+/* Estrutura das páginas internas */
+
 .pagina-interna {
   background: var(--paper);
 }
+
 .cabecalho-pagina {
-  min-height: 330px;
-  padding: 80px max(7%, calc((100% - 1180px) / 2));
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: #fff;
+  min-height: 330px;
+  padding: 80px max(7%, calc((100% - 1180px) / 2));
   background-position: center;
   background-size: cover;
+  color: #fff;
 }
+
 .cabecalho-pagina h1 {
   max-width: 800px;
   margin: 12px 0;
-  font:
-    700 clamp(40px, 6vw, 70px)/1.05 "Playfair Display",
-    serif;
+  font: 700 clamp(40px, 6vw, 70px)/1.05 var(--font-titulo);
 }
+
 .cabecalho-pagina p {
   max-width: 560px;
   color: #dedbd2;
   line-height: 1.7;
 }
+
+/* ==================================================
+   5. BANNERS DAS PÁGINAS INTERNAS
+   ================================================== */
+
 .historia-banner {
   background-image:
-    linear-gradient(90deg, #101214dc, #10121466), url("/images/banner.jpg");
-}
-.mapas-banner {
-  background-image:
-    linear-gradient(90deg, #101214e8, #10121455), url("/images/banner3.jpg");
-}
-.inimigos-banner {
-  background-image:
-    linear-gradient(90deg, #101214dc, #10121466), url("/images/banner2.png");
+    linear-gradient(90deg, #101214dc, #10121466),
+    url("/images/banner.jpg");
 }
 
-/* Home */
+.mapas-banner {
+  background-image:
+    linear-gradient(90deg, #101214e8, #10121455),
+    url("/images/banner3.jpg");
+}
+
+.inimigos-banner {
+  background-image:
+    linear-gradient(90deg, #101214dc, #10121466),
+    url("/images/banner2.png");
+}
+
+/* ==================================================
+   6. PÁGINA INICIAL
+   ================================================== */
+
 .pagina-home {
   background: var(--dark);
 }
+
+/* Banner principal */
+
 .hero-home {
-  min-height: 510px;
   display: flex;
   align-items: center;
+  min-height: 510px;
   background:
     linear-gradient(90deg, #0a0b0ccc, #0a0b0c38),
     url("/images/wallpaper.webp") center/cover;
   border-bottom: 4px solid var(--gold);
 }
+
 .hero-conteudo {
   width: min(90%, 1180px);
   margin: auto;
   padding: 70px 0;
 }
+
 .hero-conteudo h1 {
   margin: 14px 0 12px;
   color: #fff;
-  font:
-    800 clamp(50px, 8vw, 94px)/0.95 "Playfair Display",
-    serif;
+  font: 800 clamp(50px, 8vw, 94px)/0.95 var(--font-titulo);
   text-transform: uppercase;
 }
+
 .hero-conteudo p {
   max-width: 460px;
   color: #d2d0ca;
   line-height: 1.7;
 }
+
+/* Atalhos para outras páginas */
+
 .atalhos-home {
   position: relative;
-  width: min(90%, 1080px);
-  margin: -36px auto 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  width: min(90%, 1080px);
+  margin: -36px auto 0;
   box-shadow: 0 12px 28px #0008;
 }
+
 .atalhos-home a {
   display: grid;
   grid-template-columns: 42px 1fr;
-  column-gap: 10px;
+  gap: 10px;
   padding: 20px;
   background: #232628;
   color: #fff;
   text-decoration: none;
   border-right: 1px solid #3b3d3c;
 }
+
 .atalhos-home a:hover {
   background: #303435;
 }
+
 .atalhos-home strong {
   grid-row: span 2;
   color: var(--gold);
-  font:
-    22px "Playfair Display",
-    serif;
+  font: 22px var(--font-titulo);
 }
+
 .atalhos-home small {
   margin-top: 5px;
   color: #a9aaa6;
 }
+
+/* Seção de conteúdo da página inicial */
+
 .secao-home {
   padding: 84px 0 100px;
   background: var(--paper);
 }
+
+/* Cabeçalhos das seções */
+
 .cabecalho-secao,
 .secao-introducao {
   width: min(90%, 680px);
   margin: 0 auto 40px;
   text-align: center;
 }
+
 .cabecalho-secao h2,
 .secao-introducao h2 {
   margin: 12px 0;
-  font:
-    700 clamp(28px, 4vw, 42px) "Playfair Display",
-    serif;
+  font: 700 clamp(28px, 4vw, 42px) var(--font-titulo);
 }
+
 .cabecalho-secao p,
 .secao-introducao p {
   color: var(--muted);
   line-height: 1.7;
 }
+
+/* Grades de cards */
+
 .cards-container,
 .mapas-grid {
-  width: min(90%, 1120px);
-  margin: auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+  width: min(90%, 1120px);
+  margin: auto;
 }
+
+/* Aparência compartilhada dos cards */
+
 .card,
 .mapa-card,
 .inimigo-card {
   overflow: hidden;
   background: #fff;
   box-shadow: 0 6px 18px #15151518;
-  transition: 0.25s;
+  transition: var(--transition);
 }
+
 .card:hover,
 .mapa-card:hover,
 .inimigo-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 12px 25px #15151525;
 }
+
+/* Imagens dos cards */
+
 .card img,
 .mapa-card > img {
   width: 100%;
@@ -314,19 +345,22 @@ a {
   object-fit: cover;
   filter: saturate(0.8);
 }
+
+/* Conteúdo dos cards */
+
 .card-conteudo,
 .mapa-card > div,
 .inimigo-card > div:last-child {
   padding: 22px;
 }
+
 .card-conteudo h3,
 .mapa-card h2,
 .inimigo-card h2 {
   margin: 9px 0;
-  font:
-    700 22px "Playfair Display",
-    serif;
+  font: 700 22px var(--font-titulo);
 }
+
 .card-conteudo p,
 .mapa-card p,
 .inimigo-card p {
@@ -334,6 +368,7 @@ a {
   font-size: 14px;
   line-height: 1.6;
 }
+
 .card-conteudo a {
   display: inline-block;
   margin-top: 14px;
@@ -343,17 +378,20 @@ a {
   font-weight: 700;
 }
 
-/* Correções compartilhadas dos cadastros e das listagens */
-.cadastro-inimigo {
+/* ==================================================
+   7. CADASTROS E FORMULÁRIOS
+   ================================================== */
+
+.cadastro-conteudo {
   width: min(90%, 900px);
   margin: 56px auto 0;
-  padding: 0 0 48px;
+  padding-bottom: 48px;
   border-bottom: 1px solid var(--line);
 }
 
-.cadastro-inimigo h2 {
+.cadastro-conteudo h2 {
   margin-bottom: 24px;
-  font: 700 30px/1.2 "Playfair Display", serif;
+  font: 700 30px/1.2 var(--font-titulo);
 }
 
 .form-cadastro {
@@ -361,16 +399,21 @@ a {
   gap: 20px;
 }
 
+/* Campos e rótulos */
+
 .campo {
-  min-width: 0;
+  display: flex;
+  flex-direction: column;
   gap: 6px;
+  min-width: 0;
 }
 
 .campo label {
   color: var(--text);
-  margin: 0;
   font-weight: 600;
 }
+
+/* Campos de entrada */
 
 .campo input,
 .campo textarea {
@@ -378,6 +421,7 @@ a {
   min-width: 0;
   padding: 12px 14px;
   border: 1px solid var(--line);
+  border-radius: 6px;
   background: #fff;
   color: var(--text);
   font: inherit;
@@ -385,20 +429,15 @@ a {
 }
 
 .campo textarea {
-  resize: vertical;
   min-height: 140px;
-}
-
-.campo input:focus-visible,
-.campo textarea:focus-visible,
-.form-cadastro button:focus-visible {
-  outline: 3px solid var(--gold);
-  outline-offset: 3px;
+  resize: vertical;
 }
 
 .campo input[type="file"] {
   padding: 10px;
 }
+
+/* Botão para selecionar arquivos */
 
 .campo input[type="file"]::file-selector-button {
   margin-right: 12px;
@@ -411,24 +450,62 @@ a {
   cursor: pointer;
 }
 
+/* Botão de envio */
+
 .form-cadastro button {
   justify-self: start;
   padding: 13px 24px;
+  border: 0;
+  border-radius: 6px;
   background: var(--gold);
   color: var(--dark);
-  font: 700 14px/1.5 "DM Sans", Arial, sans-serif;
+  font: 700 14px/1.5 var(--font-texto);
+  cursor: pointer;
+  transition: var(--transition);
 }
 
 .form-cadastro button:hover {
   background: #efd083;
 }
 
+/* Botão de exclusão */
+button.excluir {
+  justify-self: start;
+  padding: 13px 24px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--gold);
+  color: var(--dark);
+  font: 700 14px/1.5 var(--font-texto);
+  cursor: pointer;
+  transition: var(--transition);
+}
 
-/* História */
+/* Efeito ao passar o mouse */
+button.excluir:hover {
+  background: #efd083;
+}
+
+/* Destaque de foco para acessibilidade */
+
+.campo input:focus-visible,
+.campo textarea:focus-visible,
+.form-cadastro button:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* ==================================================
+   8. PÁGINA DE HISTÓRIA
+   ================================================== */
+
+/* Linha do tempo */
+
 .linha-do-tempo {
   width: min(90%, 900px);
   margin: 64px auto;
 }
+
 .evento {
   display: grid;
   grid-template-columns: 74px 1fr;
@@ -436,94 +513,120 @@ a {
   padding: 25px 0 30px;
   border-bottom: 1px solid var(--line);
 }
+
 .evento > span {
   color: #ae812b;
-  font:
-    700 27px "Playfair Display",
-    serif;
+  font: 700 27px var(--font-titulo);
 }
+
 .evento h2 {
   margin-bottom: 9px;
-  font:
-    700 25px "Playfair Display",
-    serif;
+  font: 700 25px var(--font-titulo);
 }
+
 .evento p {
   color: var(--muted);
   line-height: 1.7;
 }
+
+/* Seção de destaque histórico */
+
 .historia-destaque {
-  width: min(90%, 1080px);
-  margin: 80px auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  width: min(90%, 1080px);
+  margin: 80px auto;
   background: #17191a;
   color: #fff;
 }
+
 .historia-destaque img {
   width: 100%;
   height: 100%;
   min-height: 330px;
   object-fit: cover;
 }
+
 .historia-destaque div {
   align-self: center;
   padding: 54px;
 }
+
 .historia-destaque h2 {
   margin: 14px 0;
-  font:
-    700 34px "Playfair Display",
-    serif;
+  font: 700 34px var(--font-titulo);
 }
+
 .historia-destaque p {
   color: #c4c3bd;
   line-height: 1.7;
 }
 
-/* Mapas e inimigos */
+/* ==================================================
+   9. MAPAS E INIMIGOS
+   ================================================== */
+
+/* Grade de mapas */
+
 .mapas-grid {
   margin: 64px auto 100px;
 }
+
+/* Efeito de zoom nas imagens */
+
 .mapa-card img,
-.imagem-inimigo img {
-  transition: 0.3s;
+.imagem-catalogo img {
   filter: saturate(0.75);
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
+
 .mapa-card:hover img,
-.inimigo-card:hover .imagem-inimigo img {
+.catalogo-card:hover .imagem-catalogo img {
   transform: scale(1.04);
   filter: saturate(1);
 }
+
+/* Identificadores dos cards */
+
 .mapa-card span,
 .card-numero {
   color: #a47724;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
   font-size: 10px;
   font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
-.inimigos-conteudo {
+
+/* Área de conteúdo do catalogo */
+
+.catalogo-conteudo {
   padding: 80px 0 100px;
   background: var(--paper);
 }
-.inimigos-grid {
+
+.catalogo-grid {
   margin-top: 0;
 }
-.inimigo-card {
+
+.catalogo-card {
   display: flex;
   flex-direction: column;
 }
-.imagem-inimigo {
+
+/* Imagem e selo de identificação do catalogo */
+
+.imagem-catalogo {
   position: relative;
   overflow: hidden;
 }
-.imagem-inimigo img {
+
+.imagem-catalogo img {
   width: 100%;
   height: 220px;
   object-fit: cover;
 }
-.selo-inimigo {
+
+.selo-catalogo {
   position: absolute;
   bottom: 14px;
   left: 14px;
@@ -536,57 +639,105 @@ a {
   text-transform: uppercase;
 }
 
+/* ==================================================
+   10. RODAPÉ
+   ================================================== */
+
+.rodape {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 68px;
+  padding: 20px;
+  background: var(--dark);
+  color: #aaa69d;
+  text-align: center;
+  font-size: 12px;
+}
+
+/* ==================================================
+   11. RESPONSIVIDADE PARA CELULARES
+   ================================================== */
+
 @media (max-width: 700px) {
+  /* Ajuste da navegação */
+
   body {
     padding-top: 120px;
   }
+
   .navbar {
     height: 120px;
   }
+
   .navbar-conteudo {
     flex-direction: column;
     justify-content: center;
     gap: 5px;
   }
+
   .navbar ul {
     flex-wrap: wrap;
   }
+
   .navbar a {
     padding: 8px 9px;
   }
+
+  /* Banner principal */
+
   .hero-home {
     min-height: 470px;
   }
+
+  /* Cards em coluna única */
+
   .atalhos-home,
   .cards-container,
   .mapas-grid {
     grid-template-columns: 1fr;
   }
+
   .atalhos-home {
     margin-top: 0;
   }
+
   .atalhos-home a {
     border-bottom: 1px solid #3b3d3c;
   }
+
+  /* Cabeçalhos das páginas internas */
+
   .cabecalho-pagina {
     min-height: 300px;
     padding: 60px 7%;
   }
+
+  /* Linha do tempo */
+
   .evento {
     grid-template-columns: 44px 1fr;
     gap: 12px;
   }
+
+  /* Destaque histórico */
+
   .historia-destaque {
     grid-template-columns: 1fr;
     margin: 55px auto;
   }
+
   .historia-destaque div {
     padding: 32px 25px;
   }
+
+  /* Espaçamento das páginas */
+
   .mapas-grid {
     margin-top: 40px;
   }
-  .inimigos-conteudo {
+
+  .catalogo-conteudo {
     padding: 55px 0 75px;
   }
 }

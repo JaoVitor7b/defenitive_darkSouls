@@ -89,4 +89,40 @@ router.post(
   }
 );
 
+// ROTA DE EXCLUSAO DO CARD
+router.post("/inimigos/excluir/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const inimigo = await Enemies.findByPk(id);
+
+    if (!inimigo) {
+      return res.status(404).send("Inimigo não encontrado.");
+    }
+
+    // Excluir o registro do banco
+    await inimigo.destroy();
+
+    // Excluir a foto, se existir
+    if (inimigo.foto) {
+      const nomeArquivo = path.basename(inimigo.foto);
+      const caminhoFoto = path.join(pastaUploads, nomeArquivo);
+
+      try {
+        await fs.promises.unlink(caminhoFoto);
+      } catch (erroArquivo) {
+        if (erroArquivo.code !== "ENOENT") {
+          console.error("Erro ao excluir foto:", erroArquivo);
+        }
+      }
+    }
+
+    return res.redirect("/inimigos");
+  } catch (error) {
+    console.error("Erro ao excluir inimigo:", error);
+    return res.status(500).send("Erro ao excluir inimigo.");
+  }
+});
+
+
 export default router;

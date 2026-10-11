@@ -1,6 +1,7 @@
 // Arquivo com os dados de conexão com o banco
 import Sequelize from "sequelize";
 
+// Configuracao do Banco de Dados
 export const DB_CONFIG = {
   host: process.env.DB_HOST || "localhost",
   port: Number(process.env.DB_PORT) || 3306,

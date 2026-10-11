@@ -1,5 +1,8 @@
 <%- include("partials/header.ejs") %>
- <%- include("partials/navbar.ejs") %>
+  <%- include("partials/navbar.ejs") %>
+
+
+
     <main class="pagina-interna inimigos-page">
       <section class="cabecalho-pagina inimigos-banner" aria-labelledby="titulo-pagina">
         <span class="eyebrow">BESTIÁRIO DE LORDRAN</span>
@@ -7,7 +10,9 @@
         <p>Conheça os principais inimigos e chefes encontrados durante a jornada por Dark Souls.</p>
       </section>
 
-      <section class="cadastro-inimigo" aria-labelledby="titulo-cadastro">
+
+
+      <section class="cadastro-conteudo" aria-labelledby="titulo-cadastro">
         <h2 id="titulo-cadastro">Cadastrar Inimigo</h2>
         <form class="form-cadastro" action="/inimigos/cadastrar" method="POST" enctype="multipart/form-data">
           <div class="campo">
@@ -24,31 +29,49 @@
             <input type="file" id="foto" name="foto" accept=".jpg,.jpeg,.png,.webp" required>
           </div>
           <button type="submit">Cadastrar Inimigo</button>
+          <button type="reset">Limpar</button>
         </form>
       </section>
 
-      <section class="inimigos-conteudo" aria-labelledby="titulo-listagem">
+
+
+      <section class="catalogo-conteudo" aria-labelledby="titulo-listagem">
         <div class="secao-introducao">
           <h2 id="titulo-listagem">Adversários memoráveis</h2>
           <p>Cada inimigo possui características, estratégias e histórias próprias, tornando cada batalha uma
             experiência única.</p>
         </div>
-        <div class="mapas-grid inimigos-grid">
+        <div class="mapas-grid catalogo-grid">
           <% if (typeof inimigos !=="undefined" && Array.isArray(inimigos) && inimigos.length> 0) { %>
             <% inimigos.forEach((inimigo)=> { %>
-              <article class="mapa-card inimigo-card">
-                <div class="imagem-inimigo">
+              <article class="mapa-card catalogo-card">
+                <div class="imagem-catalogo">
                   <img src="<%= inimigo.foto %>" alt="<%= inimigo.nome %>" loading="lazy">
                 </div>
+
                 <div class="inimigo-informacoes">
                   <span class="card-numero">INIMIGO</span>
+
                   <h2>
                     <%= inimigo.nome %>
                   </h2>
+
                   <p>
                     <%= inimigo.descricao %>
                   </p>
+
+
+                  <form action="/inimigos/excluir/<%= inimigo.id %>" method="POST"
+                    onsubmit="return confirm('Deseja excluir este mapa?')">
+                    <button class="excluir" type="submit">
+                      Excluir
+                    </button>
+                  </form>
+
                 </div>
+
+
+
               </article>
               <% }); %>
                 <% } else { %>

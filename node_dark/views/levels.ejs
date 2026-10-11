@@ -7,7 +7,7 @@
         <p>Explore atalhos, fortalezas, ruínas e lugares onde cada caminho esconde um novo perigo.</p>
       </section>
 
-      <section class="cadastro-inimigo" aria-labelledby="titulo-cadastro">
+      <section class="cadastro-conteudo" aria-labelledby="titulo-cadastro">
         <h2 id="titulo-cadastro">Cadastrar Mapa</h2>
         <form class="form-cadastro" action="/mapas/cadastrar" method="POST" enctype="multipart/form-data">
           <div class="campo">
@@ -24,22 +24,23 @@
             <input type="file" id="foto" name="foto" accept=".jpg,.jpeg,.png,.webp" required>
           </div>
           <button type="submit">Cadastrar Mapa</button>
+          <button type="reset">Limpar</button>
         </form>
       </section>
 
-      <section class="inimigos-conteudo" aria-labelledby="titulo-listagem">
+      <section class="catalogo-conteudo" aria-labelledby="titulo-listagem">
         <div class="secao-introducao">
           <h2 id="titulo-listagem">Caminhos de Lordran</h2>
           <p>Explore as áreas cadastradas de Lordran.</p>
         </div>
-        <div class="mapas-grid inimigos-grid">
+        <div class="mapas-grid catalogo-grid">
           <% if (typeof mapas !=="undefined" && Array.isArray(mapas) && mapas.length> 0) { %>
             <% mapas.forEach((mapa)=> { %>
-              <article class="mapa-card inimigo-card">
-                <div class="imagem-inimigo">
+              <article class="mapa-card catalogo-card">
+                <div class="imagem-catalogo">
                   <img src="<%= mapa.foto %>" alt="<%= mapa.nome %>" loading="lazy">
                 </div>
-                <div class="inimigo-informacoes">
+                <div class="catalogo-informacoes">
                   <span class="card-numero">MAPA</span>
                   <h2>
                     <%= mapa.nome %>
@@ -47,6 +48,12 @@
                   <p>
                     <%= mapa.descricao %>
                   </p>
+                  <form action="/mapas/excluir/<%= mapa.id %>" method="POST"
+                    onsubmit="return confirm('Deseja excluir este mapa?')">
+                    <button class="excluir" type="submit">
+                      Excluir
+                    </button>
+                  </form>
                 </div>
               </article>
               <% }); %>

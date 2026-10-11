@@ -89,4 +89,41 @@ router.post(
   }
 );
 
+
+
+// ROTA DE EXCLUSAO DO CARD
+router.post("/mapas/excluir/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const mapa = await Levels.findByPk(id);
+
+    if (!mapa) {
+      return res.status(404).send("mapa não encontrado.");
+    }
+
+    // Excluir o registro do banco
+    await mapa.destroy();
+
+    // Excluir a foto, se existir
+    if (mapa.foto) {
+      const nomeArquivo = path.basename(mapa.foto);
+      const caminhoFoto = path.join(pastaUploads, nomeArquivo);
+
+      try {
+        await fs.promises.unlink(caminhoFoto);
+      } catch (erroArquivo) {
+        if (erroArquivo.code !== "ENOENT") {
+          console.error("Erro ao excluir foto:", erroArquivo);
+        }
+      }
+    }
+
+    return res.redirect("/mapas");
+  } catch (error) {
+    console.error("Erro ao excluir mapa:", error);
+    return res.status(500).send("Erro ao excluir mapa.");
+  }
+});
+
 export default router;
