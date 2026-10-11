@@ -1,0 +1,74 @@
+<body class="pagina-home">
+  <%- include('partials/header.ejs') %> <%- include('partials/navbar.ejs') %>
+
+  <main>
+    <section class="hero-home">
+      <div class="hero-conteudo">
+        <span class="eyebrow">Prepare to die</span>
+        <h1>Dark Souls</h1>
+        <p>
+          Explore Lordran, conheça sua história e enfrente os desafios que
+          aguardam nas sombras.
+        </p>
+        <a class="botao-principal" href="/history"
+          >Conheça a história <span>→</span></a
+        >
+      </div>
+    </section>
+
+    <section class="atalhos-home">
+      <a href="/history"
+        ><strong>01</strong><span>História do mundo</span
+        ><small>Descubra a Era do Fogo</small></a
+      >
+      <a href="/enemies"
+        ><strong>02</strong><span>Inimigos</span
+        ><small>Conheça seus adversários</small></a
+      >
+      <a href="/levels"
+        ><strong>03</strong><span>Mapas e áreas</span
+        ><small>Explore cada caminho</small></a
+      >
+    </section>
+
+    <section class="secao-home">
+      <div class="cabecalho-secao">
+        <span class="eyebrow">O universo de Lordran</span>
+        <h2>Conheça Dark Souls</h2>
+        <p>
+          Um mundo interconectado, cheio de segredos, batalhas memoráveis e
+          histórias escondidas em cada detalhe.
+        </p>
+      </div>
+
+      <div class="cards-container home-cards">
+        <article class="card">
+          <img src="/images/Artorias.avif" alt="Artorias" />
+          <div class="card-conteudo">
+            <h3>Guerreiros lendários</h3>
+            <p>Reviva as histórias dos personagens que marcaram Lordran.</p>
+            <a href="/history">Ver história →</a>
+          </div>
+        </article>
+        <article class="card">
+          <img src="/images/Gwyn.webp" alt="Gwyn" />
+          <div class="card-conteudo">
+            <h3>Senhores e deuses</h3>
+            <p>Entenda a origem da chama e o destino do mundo.</p>
+            <a href="/history">Explorar →</a>
+          </div>
+        </article>
+        <article class="card">
+          <img src="/images/CapraDemon.webp" alt="Demônio Capra" />
+          <div class="card-conteudo">
+            <h3>Desafios mortais</h3>
+            <p>Prepare-se para enfrentar chefes e criaturas terríveis.</p>
+            <a href="/enemies">Ver inimigos →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer.ejs') %>
+</body>

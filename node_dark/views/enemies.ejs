@@ -1,0 +1,60 @@
+<%- include("partials/header.ejs") %>
+ <%- include("partials/navbar.ejs") %>
+    <main class="pagina-interna inimigos-page">
+      <section class="cabecalho-pagina inimigos-banner" aria-labelledby="titulo-pagina">
+        <span class="eyebrow">BESTIÁRIO DE LORDRAN</span>
+        <h1 id="titulo-pagina">Inimigos e Chefes</h1>
+        <p>Conheça os principais inimigos e chefes encontrados durante a jornada por Dark Souls.</p>
+      </section>
+
+      <section class="cadastro-inimigo" aria-labelledby="titulo-cadastro">
+        <h2 id="titulo-cadastro">Cadastrar Inimigo</h2>
+        <form class="form-cadastro" action="/inimigos/cadastrar" method="POST" enctype="multipart/form-data">
+          <div class="campo">
+            <label for="nome">Nome do Inimigo</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite o nome do inimigo" required>
+          </div>
+          <div class="campo">
+            <label for="descricao">Descrição do Inimigo</label>
+            <textarea id="descricao" name="descricao" rows="5" placeholder="Digite a descrição do inimigo"
+              required></textarea>
+          </div>
+          <div class="campo">
+            <label for="foto">Foto do Inimigo</label>
+            <input type="file" id="foto" name="foto" accept=".jpg,.jpeg,.png,.webp" required>
+          </div>
+          <button type="submit">Cadastrar Inimigo</button>
+        </form>
+      </section>
+
+      <section class="inimigos-conteudo" aria-labelledby="titulo-listagem">
+        <div class="secao-introducao">
+          <h2 id="titulo-listagem">Adversários memoráveis</h2>
+          <p>Cada inimigo possui características, estratégias e histórias próprias, tornando cada batalha uma
+            experiência única.</p>
+        </div>
+        <div class="mapas-grid inimigos-grid">
+          <% if (typeof inimigos !=="undefined" && Array.isArray(inimigos) && inimigos.length> 0) { %>
+            <% inimigos.forEach((inimigo)=> { %>
+              <article class="mapa-card inimigo-card">
+                <div class="imagem-inimigo">
+                  <img src="<%= inimigo.foto %>" alt="<%= inimigo.nome %>" loading="lazy">
+                </div>
+                <div class="inimigo-informacoes">
+                  <span class="card-numero">INIMIGO</span>
+                  <h2>
+                    <%= inimigo.nome %>
+                  </h2>
+                  <p>
+                    <%= inimigo.descricao %>
+                  </p>
+                </div>
+              </article>
+              <% }); %>
+                <% } else { %>
+                  <p class="mensagem-vazia">Nenhum inimigo cadastrado ainda.</p>
+                  <% } %>
+        </div>
+      </section>
+    </main>
+    <%- include("partials/footer.ejs") %>

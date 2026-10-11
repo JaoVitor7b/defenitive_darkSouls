@@ -1,0 +1,59 @@
+<%- include("partials/header.ejs") %>
+  <%- include("partials/navbar.ejs") %>
+    <main class="pagina-interna mapas-page">
+      <section class="cabecalho-pagina mapas-banner" aria-labelledby="titulo-pagina">
+        <span class="eyebrow">Um mundo conectado</span>
+        <h1 id="titulo-pagina">Áreas de Lordran</h1>
+        <p>Explore atalhos, fortalezas, ruínas e lugares onde cada caminho esconde um novo perigo.</p>
+      </section>
+
+      <section class="cadastro-inimigo" aria-labelledby="titulo-cadastro">
+        <h2 id="titulo-cadastro">Cadastrar Mapa</h2>
+        <form class="form-cadastro" action="/mapas/cadastrar" method="POST" enctype="multipart/form-data">
+          <div class="campo">
+            <label for="nome">Nome do Mapa</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite o nome do mapa" required>
+          </div>
+          <div class="campo">
+            <label for="descricao">Descrição do Mapa</label>
+            <textarea id="descricao" name="descricao" rows="5" placeholder="Digite a descrição do mapa"
+              required></textarea>
+          </div>
+          <div class="campo">
+            <label for="foto">Foto do Mapa</label>
+            <input type="file" id="foto" name="foto" accept=".jpg,.jpeg,.png,.webp" required>
+          </div>
+          <button type="submit">Cadastrar Mapa</button>
+        </form>
+      </section>
+
+      <section class="inimigos-conteudo" aria-labelledby="titulo-listagem">
+        <div class="secao-introducao">
+          <h2 id="titulo-listagem">Caminhos de Lordran</h2>
+          <p>Explore as áreas cadastradas de Lordran.</p>
+        </div>
+        <div class="mapas-grid inimigos-grid">
+          <% if (typeof mapas !=="undefined" && Array.isArray(mapas) && mapas.length> 0) { %>
+            <% mapas.forEach((mapa)=> { %>
+              <article class="mapa-card inimigo-card">
+                <div class="imagem-inimigo">
+                  <img src="<%= mapa.foto %>" alt="<%= mapa.nome %>" loading="lazy">
+                </div>
+                <div class="inimigo-informacoes">
+                  <span class="card-numero">MAPA</span>
+                  <h2>
+                    <%= mapa.nome %>
+                  </h2>
+                  <p>
+                    <%= mapa.descricao %>
+                  </p>
+                </div>
+              </article>
+              <% }); %>
+                <% } else { %>
+                  <p class="mensagem-vazia">Nenhum mapa cadastrado ainda.</p>
+                  <% } %>
+        </div>
+      </section>
+    </main>
+    <%- include("partials/footer.ejs") %>
